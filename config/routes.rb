@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   
   resources :users
   
+  get 'login', to: "users#login"
+  get 'admin', to: "users#admin"
+  match 'attempt_login', to: "users#attempt_login", via: "post"
+  match 'logout', to: "users#logout", via: 'get'
+
 end

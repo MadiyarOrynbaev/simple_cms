@@ -1,0 +1,9 @@
+<div class="text-center well">
+  <h2>Меню админа</h2>
+  <h3>Вы вошли как: <%= session[:name] %></h3>
+  <ul class='list-inline'>
+    <li><%= link_to("Управлять содержимым", '#') %></li>
+    <li><%= link_to("Управлять пользователями", action: 'index') %></li>
+    <li><%= link_to("Выйти", action: 'logout') %></li>
+  </ul>
+</div>

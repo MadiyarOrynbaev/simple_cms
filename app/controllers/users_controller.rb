@@ -1,5 +1,43 @@
 class UsersController < ApplicationController
   
+  before_action :confirm_logged_in, except: [:login, :attempt_login]
+  
+  def admin
+  end
+  
+  def login
+  end
+  
+  def attempt_login
+    if params[:email].present? && params[:password].present?
+      found_user = User.find_by_email(params[:email])
+      
+      if found_user
+        if found_user.authenticate params[:password]
+          session[:user_id] = found_user.id
+          session[:name] = found_user.name
+          flash[:success] = "Добро пожаловать, #{session[:name]}"
+          redirect_to action: "admin"
+        end
+      else
+        flash[:danger] = "Неверный логин/пароль"
+        redirect_to action: "login"  
+      end
+    else
+      flash[:danger] = "Неверный логин/пароль"
+      redirect_to action: "login"
+    end
+  end
+  
+  def logout
+    # удаление текущей сессии
+    session[:user_id] = nil
+    session[:name] = nil
+    flash[:success] = "Вы успешно вышли"
+    redirect_to(:action => "login")
+  end
+
+  
   def index
      @users = User.all
   end
