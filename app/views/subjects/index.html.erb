@@ -1,0 +1,36 @@
+<%= link_to("Добавить новую тему", action: 'new', class: 'btn btn-success') %>
+
+<div class="text-center well">
+  <h2>Темы сайта</h2>
+  <h3>Вы вошли как: <%= session[:name] %></h3>
+  <table class="table">
+	  <thead>
+	    <tr>
+	      <th>ID</th>
+	      <th>Позиция</th>
+	      <th>Название</th>
+	      <th>Видимый</th>
+	      <th>Количество страниц</th>
+	      <th>Действия</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @subjects.each do |subject| %>
+	  		<tr>
+		      <th scope="row"><%= subject.id %></th>
+		      <td><%= subject.position %></td>
+		      <td><%= link_to subject.title, subject %></td>
+		      <td><%= subject.visible %></td>
+		      <td><%= subject.pages.size %></td>
+		      
+		      <td>
+		      	<%= link_to "Показать страницы", "#" %>
+		      	<%= link_to "Показать", subject %> 
+		      	<%= link_to "Изменить", "#" %>
+		      	<%= link_to "Удалить", subject, method: :delete, data: { confirm: "Вы уверены?" } %>
+		      </td>
+		    </tr>
+			<% end %>
+	  </tbody>
+	</table>
+</div>

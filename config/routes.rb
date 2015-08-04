@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
   
   resources :users
+  resources :subjects
   
   get 'login', to: "users#login"
   get 'admin', to: "users#admin"
