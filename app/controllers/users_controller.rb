@@ -73,6 +73,14 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:success] = "Пользователь успешно удален"
+      redirect_to action: "index"
+    end
+  end
 
   
     private

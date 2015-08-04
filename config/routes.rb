@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root  'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   resources :users
   resources :subjects
+  resources :pages
   
   get 'login', to: "users#login"
   get 'admin', to: "users#admin"

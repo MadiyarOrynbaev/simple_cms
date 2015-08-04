@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   
   def home
+    @subject = Subject.all
   end
 
   def about

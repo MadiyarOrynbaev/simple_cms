@@ -1,6 +1,7 @@
 class Subject < ActiveRecord::Base
     has_many :pages
     
+    acts_as_list
     
     scope :visible, -> { where(:visible => true) }
     scope :invisible, -> { where(:visible => false) }
