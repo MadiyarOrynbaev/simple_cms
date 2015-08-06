@@ -4,12 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :find_subjects
+  
+
 
   private
-  
-  def find_subjects
-    @subjects = Subject.sorted.visible
-  end
   
   def confirm_logged_in
     unless session[:user_id]
@@ -19,6 +17,10 @@ class ApplicationController < ActionController::Base
     else
       return true
     end
+  end
+  
+  def find_subjects
+    @subjects = Subject.visible.sorted
   end
   
 end

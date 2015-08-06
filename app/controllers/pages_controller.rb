@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  
   before_action :confirm_logged_in
   before_action :find_subject
   
@@ -7,14 +8,14 @@ class PagesController < ApplicationController
   end
   
   def new
-      @page = Page.new({subject_id: @subject.id, name: "Default"})
+      @page = Page.new({subject_id: @subject.id})
       @subjects = Subject.sorted
   end
   
   def create
       @page = Page.new(page_params)
       if @page.save
-        flash[:notice] = "Страница создана успешно."
+        flash[:success] = "Страница создана успешно."
         redirect_to action: 'index', subject_id: @subject.id
       else
         @subjects = Subject.order('position ASC')
@@ -24,7 +25,7 @@ class PagesController < ApplicationController
   
   private
     def page_params
-      params.require(:page).permit(:subject_id, :name, :link, :position, :visible)
+      params.require(:page).permit(:subject_id, :title, :link, :position, :visible)
     end
   
     def find_subject
@@ -32,5 +33,4 @@ class PagesController < ApplicationController
         @subject = Subject.find(params[:subject_id])
       end
     end
-  
 end

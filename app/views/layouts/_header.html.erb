@@ -5,12 +5,10 @@
       <ul class="nav navbar-nav pull-right">
         <li><%= link_to "Home",   root_path %></li>
         <li><%= link_to "About", about_path %></li>
-        
-        <% @subjects.each do |subject| %>
-          <li><%= link_to subject.title, subject %></li>
+        <% @subjects.each do |s| %>
+          <li><%= link_to s.title, s %></li>
         <% end %>
-        
-        <% if signed_in? %>
+        <% if logged_in? %>
           <li><%= link_to "Админ", admin_path %></li>
         <% end %>
       </ul>

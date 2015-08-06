@@ -1,4 +1,4 @@
-<%= link_to("Добавить новую тему", action: 'new') %>
+<%= link_to("Добавить новый раздел", action: 'new') %>
 
 <div class="text-center well">
   <h2>Темы сайта</h2>
@@ -24,7 +24,7 @@
 		      <td><%= subject.pages.size %></td>
 		      
 		      <td>
-		      	<%= link_to "Показать страницы", "#" %>
+		      	<%= link_to "Страницы", pages_path(subject_id: subject.id) %>
 		      	<%= link_to "Показать", subject %> 
 		      	<%= link_to "Изменить", edit_subject_path(subject.id) %>
 		      	<%= link_to "Удалить", subject, method: :delete, data: { confirm: "Вы уверены?" } %>
