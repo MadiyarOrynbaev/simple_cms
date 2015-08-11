@@ -7,6 +7,11 @@ class PagesController < ApplicationController
     @pages = @subject.pages.sorted
   end
   
+  def show
+    @page = Page.find(params[:id])
+    @sections = @page.sections.sorted
+  end
+  
   def new
       @page = Page.new({subject_id: @subject.id})
       @subjects = Subject.sorted

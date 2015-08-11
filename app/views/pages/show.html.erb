@@ -1,0 +1,33 @@
+<%= link_to("Добавить новый раздел", controller: "sections", action: 'new', page_id: @page.id) %>
+
+<div class="text-center well">
+  <h2>Разделы страницы</h2>
+  <h3>Вы вошли как: <%= session[:name] %></h3>
+  <table class="table">
+	  <thead>
+	    <tr>
+	      <th>ID</th>
+	      <th>Позиция</th>
+	      <th>Название</th>
+	      <th>Видимый</th>
+	      <th>Действия</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @sections.each do |section| %>
+	  		<tr>
+		      <th scope="row"><%= section.id %></th>
+		      <td><%= section.position %></td>
+		      <td><%= link_to section.title, section %></td>
+		      <td><%= section.visible %></td>
+		      
+		      <td>
+		      	<%= link_to "Показать", section %> 
+		      	<%= link_to "Изменить", edit_section_path(id: section.id, page_id: @page.id) %>
+		      	<%= link_to "Удалить", section_path(id: section.id, page_id: @page.id), method: :delete, data: { confirm: "Вы уверены?" } %>
+		      </td>
+		    </tr>
+			<% end %>
+	  </tbody>
+	</table>
+</div>
