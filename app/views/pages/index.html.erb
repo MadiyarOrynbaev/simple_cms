@@ -1,0 +1,33 @@
+<%= link_to("Добавить новую страницу", action: 'new', subject_id: @subject.id) %>
+
+<div class="text-center well">
+  <h2>Темы сайта</h2>
+  <h3>Вы вошли как: <%= session[:name] %></h3>
+  <table class="table">
+	  <thead>
+	    <tr>
+	      <th>ID</th>
+	      <th>Позиция</th>
+	      <th>Название</th>
+	      <th>Видимый</th>
+	      <th>Действия</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @pages.each do |page| %>
+	  		<tr>
+		      <th scope="row"><%= page.id %></th>
+		      <td><%= page.position %></td>
+		      <td><%= link_to page.title, page %></td>
+		      <td><%= page.visible %></td>
+		      
+		      <td>
+		      	<%= link_to "Показать", page %> 
+		      	<%= link_to "Изменить", edit_page_path(id: page.id, subject_id: @subject.id) %>
+		      	<%= link_to "Удалить", page_path(id: page.id, subject_id: @subject.id), method: :delete, data: { confirm: "Вы уверены?" } %>
+		      </td>
+		    </tr>
+			<% end %>
+	  </tbody>
+	</table>
+</div>
