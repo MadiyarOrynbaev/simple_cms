@@ -1,7 +1,6 @@
 class StaticPagesController < ApplicationController
   
   def home
-    @subject = Subject.all
   end
 
   def about
@@ -12,4 +11,15 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+  
+  def show
+  	@page = Page.where(link: params[:link], visible: true).first
+  	if @page.nil?
+  	  redirect_to(action: 'home')
+  	else
+  	  
+  	end
+  end
+
+  
 end

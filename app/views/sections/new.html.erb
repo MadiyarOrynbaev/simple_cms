@@ -9,6 +9,19 @@
   
             <%= f.label :position %>
             <%= f.number_field :position %>
+            
+            <%= f.label(:content_type) %>
+            <div class="radio">
+                <label>
+                <%= f.radio_button(:content_type, 'text', class: "text", checked: true) %>
+                    Text
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                <%= f.radio_button(:content_type, 'HTML', class: "html") %> HTML
+                </label>
+            </div>
   
             <%= f.label :content %>
             <%= f.text_area :content, class: 'wysihtml5' %>

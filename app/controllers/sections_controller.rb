@@ -1,5 +1,4 @@
 class SectionsController < ApplicationController
-  
   before_action :find_page
   
   def show
@@ -7,17 +6,18 @@ class SectionsController < ApplicationController
   end
 
   def new
-    @section = Section.new
+    @section = Section.new({page_id: @page.id})
     @pages = Page.sorted
   end
   
   def create
     @section = Section.new(section_params)
     if @section.save
-      redirect_to @section
+      flash[:success] = "Сохранено успешно"
+      redirect_to @page
     else
-      @pages = Page.sorted  
-      render 'new'
+      @pages = Page.sorted
+      render "new"
     end
   end
 
@@ -29,7 +29,8 @@ class SectionsController < ApplicationController
   def update
     @section = Section.find(params[:id])
     if @section.update_attributes(section_params)
-      redirect_to @section
+      flash[:success] = "Сохранено успешно"
+      redirect_to @page
     else
       @pages = Page.sorted
       render "edit"
@@ -39,13 +40,14 @@ class SectionsController < ApplicationController
   def destroy
     @section = Section.find(params[:id])
     if @section.destroy
-      redirect_to @section.page
+      flash[:success] = "Удалено успешно"
+      redirect_to @page
     end
   end
   
   private
     def section_params
-      params.require(:section).permit(:page_id, :title, :content, :position, :visible)
+      params.require(:section).permit(:page_id, :title, :content, :content_type, :position, :visible)
     end
     
     def find_page

@@ -1,1 +1,9 @@
 <h1><%= @subject.title %></h1>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    <% @subject.pages.each do |p| %>
+        <%= link_to p.title, controller: "static_pages", action: "show", link: p.link%>
+        <br>
+    <% end %>  
+    </div>
+</div>

@@ -7,7 +7,12 @@ class Section < ActiveRecord::Base
     
     acts_as_list scope: :page
 
-    validates :title, presence: true, length: {maximum: 255}
     validates :content, presence: true
     validates :page_id, presence: true
+    
+    CONTENT_TYPES = ['text', 'HTML']	
+  
+  validates_inclusion_of :content_type, in: CONTENT_TYPES,
+    message: "Должен быть один из: #{CONTENT_TYPES.join(', ')}"
+    
 end

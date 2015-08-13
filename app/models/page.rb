@@ -16,13 +16,14 @@ class Page < ActiveRecord::Base
     validates :link, presence: true
     before_validation :add_default_link
     
+    
     private
     
-        def add_default_link
-          if link.blank?
-            self.link = "#{id}-#{title.to_lat.parameterize}"
-          end
-        end
+    def add_default_link
+      if link.blank?
+        self.link = "#{id} - #{title.to_lat.parameterize}"
+      end
+    end
 
 
 end

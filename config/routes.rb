@@ -15,5 +15,7 @@ Rails.application.routes.draw do
   get 'admin', to: "users#admin"
   match 'attempt_login', to: "users#attempt_login", via: "post"
   match 'logout', to: "users#logout", via: 'get'
+  
+  get 'show/:link', to: "static_pages#show"
 
 end
