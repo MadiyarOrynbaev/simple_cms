@@ -2,6 +2,7 @@ class SubjectsController < ApplicationController
   
   before_action :confirm_logged_in, except: :show
   
+  
   def index
     @subjects = Subject.sorted
   end

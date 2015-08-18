@@ -18,6 +18,9 @@ class UsersController < ApplicationController
           session[:name] = found_user.name
           flash[:success] = "Добро пожаловать, #{session[:name]}"
           redirect_to action: "admin"
+        else
+          flash[:danger] = "Неверный логин/пароль"
+          redirect_to action: "login"    
         end
       else
         flash[:danger] = "Неверный логин/пароль"

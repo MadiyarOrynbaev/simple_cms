@@ -13,3 +13,4 @@ $(document).ready ->
           contentPar.find("iframe").remove()
           contentPar.find("input[name*=\"wysihtml5\"]").remove()
           content.show()
+         
